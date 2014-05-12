@@ -129,6 +129,42 @@ cat("Total ", count, "NA values were replaced and ", sum(is.na(df_activity)),
 ```
 
 
+* Make a histogram of the total number of steps taken each day and Calculate and report the mean and median total number of steps taken per day, with the newly imputed values. 
+
+```r
+v_total_steps_per_day_updated <- tapply(df_activity$steps, df_activity$date, 
+    sum)
+hist(v_total_steps_per_day_updated, xlab = "Total Steps per Day (updated)", 
+    ylab = "Frequency", main = "Histogram of Total Steps per day (updated)", 
+    col = "green")
+```
+
+![plot of chunk unnamed-chunk-11](figure/unnamed-chunk-11.png) 
+
+```r
+mean(v_total_steps_per_day_updated)
+```
+
+```
+## [1] 10766
+```
+
+```r
+median(v_total_steps_per_day_updated)
+```
+
+```
+## [1] 10766
+```
+
+The updated **mean** total number of steps taken per day is 
+1.0766 &times; 10<sup>4</sup> steps.
+The updated **median** total number of steps taken per day is 
+1.0766 &times; 10<sup>4</sup> steps.
+
+* Do these values differ from the estimates from the first part of the assignment? What is the impact of imputing missing data on the estimates of the total daily number of steps?
+
+The **mean** value is the **same**. The median value shows **relatively small** difference.  The impact on the median depends on which intervals had the missing values.
 
 ## Are there differences in activity patterns between weekdays and weekends?
 
@@ -154,7 +190,7 @@ xyplot(steps ~ interval | day_type, df_mean_steps_by_interval, type = "l", layou
     2), xlab = "Interval", ylab = "Number of Steps")
 ```
 
-![plot of chunk unnamed-chunk-12](figure/unnamed-chunk-12.png) 
+![plot of chunk unnamed-chunk-13](figure/unnamed-chunk-13.png) 
 
 
 
